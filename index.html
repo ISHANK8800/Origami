@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en" class="darkMode">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <title>rigami.</title>
+
+</head>
+<body>
+  <!-- Logo -->
+  <nav class="bg-white border-gray-200 px-2 sm:px-4 py-8 dark:bg-zinc-900">
+    <div class="flex flex-wrap justify-evenly items-center">
+      <a href="index.html" class="flex items-center md:w-1/5 ml-8">
+        <img src="images/logo.png" class="xs:h-16 transform transition duration-500 hover:scale-105" alt="Origami" />
+      </a>
+      <!--  -->
+
+      <!-- big screen search -->
+      <div class="hidden relative md:block lg:w-1/3">
+        <div class="flex absolute inset-y-0 right-0 items-center pr-4 cursor-pointer">
+          <svg class="w-5 h-5 text-zinc-800 dark:text-white" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </div>
+        <input type="text"
+          class="block p-2 py-4 pl-4 w-full text-zinc-800 bg-gray-100 rounded-full sm:text-sm dark:bg-zinc-800 dark:text-gray-100 dark:placeholder-gray-100 placeholder:text-zinc-800 dark:border-none border-none placeholder:font-semibold hover:shadow-xl"
+          placeholder="Search" />
+      </div>
+      <!--  -->
+
+      <!-- Right side small screen (including big)-->
+      <!-- Account button -->
+
+      <div class="flex justify-end lg:w-1/3">
+        <a href="account.html"
+          class="text:black dark:text-gray-100 font-semibold bg-gray-100 dark:hover:bg-zinc-900 hover:bg-white rounded-xl text-sm px-3 py-1 text-center inline-flex items-center mr-2 dark:bg-zinc-800 text-zinc-800">
+          <svg class="w-4 h-4 mr-2 -ml-1 text-white dark:invert" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512">
+            <path
+              d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z" />
+          </svg>
+          A C C O U N T
+        </a>
+
+        <a href="cart.html"
+          class="text:black dark:text-gray-100 font-semibold bg-gray-100 dark:hover:bg-zinc-900 hover:bg-white rounded-xl text-sm px-3 py-1 text-center inline-flex items-center mr-2 dark:bg-zinc-800">
+          <svg class="w-4 h-4 mr-2 -ml-1 text-white dark:invert" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512">
+            <path
+              d="M112 112C112 50.14 162.1 0 224 0C285.9 0 336 50.14 336 112V160H400C426.5 160 448 181.5 448 208V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V208C0 181.5 21.49 160 48 160H112V112zM160 160H288V112C288 76.65 259.3 48 224 48C188.7 48 160 76.65 160 112V160zM136 256C149.3 256 160 245.3 160 232C160 218.7 149.3 208 136 208C122.7 208 112 218.7 112 232C112 245.3 122.7 256 136 256zM312 208C298.7 208 288 218.7 288 232C288 245.3 298.7 256 312 256C325.3 256 336 245.3 336 232C336 218.7 325.3 208 312 208z" />
+          </svg>
+          C A R T
+        </a>
+        <!--  -->
+
+        <!-- Dark mode toggle  -->
+        <button id="theme-toggle" type="button"
+          class="bg-gray-100 text-zinc-800 dark:text-gray-100 dark:bg-zinc-800 hover:bg-white dark:hover:bg-zinc-900 rounded-xl text-sm p-2.5">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fill-rule="evenodd" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <!--  -->
+        <!-- big screen ends -->
+
+        <!-- Hamburger (only dark) -->
+        <button data-collapse-toggle="mobile-menu-3" type="button"
+          class="inline-flex items-center p-2 border-none sm:ml-20 text-xl text-zinc-800 rounded-lg md:hidden dark:text-gray-100 dark:bg-zinc-800 hover:bg-white bg-gray-100 dark:hover:bg-zinc-900"
+          aria-controls="mobile-menu-3" aria-expanded="false">
+          <svg class="w-6 h-6 text-zinc-800 dark:text-gray-100" aria-hidden="true" fill="currentColor"
+            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd"></path>
+          </svg>
+
+          <svg class="hidden w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <!--  -->
+      </div>
+      <!--  -->
+      <!-- small screen Search Bar -->
+      <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-3">
+        <div class="relative mt-3 md:hidden">
+          <div class="flex absolute inset-y-0 right-0 items-center pr-3 cursor-pointer">
+            <i class="fa-solid fa-magnifying-glass w-5 h-5 text-zinc-800 dark:text-gray-100"></i>
+          </div>
+          <input type="text" id="search-navbar"
+            class="block p-2 pl-4 w-full text-black rounded-full border-none sm:text-sm dark:bg-zinc-800 dark:border-none dark:placeholder-gray-100 placeholder:text-zinc-800 dark:text-gray-100 bg-gray-100"
+            placeholder="Search" />
+        </div>
+      </div>
+      <!--  -->
+    </div>
+  </nav>
+
+  <!--Navbar  -->
+  <nav class="bg-gray-100 hidden lg:block dark:bg-zinc-800">
+    <div class="flex">
+      <div class="lg:px-[4.5rem] py-5 bg-primary flex items-center cursor-pointer group relative">
+        <span class="text-zinc-800 dark:invert">
+          <i class="fas fa-bars"></i>
+        </span>
+        <span class="capitalize ml-2 text-zinc-900 font-semibold dark:text-gray-100">C A T E G O R I E S</span>
+
+        <div
+          class="absolute left-0 top-full w-full bg-gray-100 shadow-md invisible opacity-0 group-hover:opacity-100 group-hover:visible transition duration-300 z-50 divide-y divide-gray-300 divide-solid dark:bg-zinc-800">
+          <a href="shop.html" class="W-100 px-14 py-5 flex items-center hover:bg-gray-100 transition dark:invert">
+            <i class="fas fa-ruler"></i>
+            <span class="ml-3 text-zinc-900 text-sm">R U L E R</span>
+          </a>
+
+          <a href="shop.html" class="W-100 px-14 py-5 flex items-center hover:bg-gray-100 transition dark:invert">
+            <i class="fa-regular fa-note-sticky"></i>
+            <span class="ml-3 text-zinc-900 text-sm">P L A N N E R S</span>
+          </a>
+
+          <a href="shop.html" class="W-100 px-14 py-5 flex items-center hover:bg-gray-100 transition dark:invert">
+            <i class="fa-solid fa-book-open"></i>
+            <span class="ml-3 text-zinc-900 text-sm">N O T E B O O K</span>
+          </a>
+
+          <a href="shop.html" class="W-100 px-12 py-5 flex items-center hover:bg-gray-100 transition dark:invert">
+            <i class="fas fa-highlighter"></i>
+            <span class="ml-3 text-zinc-900 text-sm">H I G H L I G H T E R S</span>
+          </a>
+
+          <a href="shop.html" class="W-100 px-14 py-5 flex items-center hover:bg-gray-100 transition dark:invert">
+            <i class="fa-solid fa-book-journal-whills"></i>
+            <span class="ml-3 text-zinc-900 text-sm">J O U R N A L S</span>
+          </a>
+
+          <a href="shop.html" class="W-100 px-14 py-5 flex items-center hover:bg-gray-100 transition dark:invert">
+            <i class="fas fa-scissors"></i>
+            <span class="ml-3 text-zinc-900 text-sm">S C I S S O R</span>
+          </a>
+        </div>
+        <!--  -->
+      </div>
+      <!--  -->
+
+      <div class="flex items-center justify-between flex-grow xl:pl-10">
+        <div class="flex items-center space-x-28 text-base capitalize">
+          <a href="index.html"
+            class="text-zinc-900 hover:text-black font-semibold transition transform duration-500 hover:scale-110 dark:text-gray-100">H
+            O M E</a>
+
+          <a href="shop.html"
+            class="text-zinc-900 hover:text-black font-semibold transform transition duration-500 hover:scale-110 dark:text-gray-100">S
+            H O P</a>
+
+          <a href="about.html"
+            class="text-zinc-900 hover:text-black font-semibold transform transition duration-500 hover:scale-110 dark:text-gray-100">A
+            B O U T' U S</a>
+
+          <a href="contact.html"
+            class="text-zinc-900 hover:text-black font-semibold transform transition duration-500 hover:scale-110 dark:text-gray-100">C
+            O N T A C T' U S
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!--  -->
+
+
+  <!-- Top Carousel -->
+  <div id="indicators-carousel" class="relative border-none" data-carousel="static">
+    <!-- Carousel wrapper -->
+    <div class="overflow-hidden relative xs:h-[14rem] sm:h-[20rem] md:h-[33rem] shadow-2xl border-none">
+      <!-- Item 1 -->
+      <div class="hidden duration-700 ease-in-out border-none" data-carousel-item="active">
+        <a href="shop.html">
+          <img src="images/carousel/1.1.jpg"
+            class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2 border-none" alt="...">
+        </a>
+      </div>
+      <!-- Item 2 -->
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+        <a href="shop.html">
+          <img src="images/carousel/3.jpg"
+            class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2 border-none" alt="...">
+        </a>
+      </div>
+      <!-- Item 3 -->
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+        <a href="shop.html">
+          <img src="images/carousel/4.jpg"
+            class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2 border-none" alt="...">
+        </a>
+      </div>
+      <!-- Item 4 -->
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+        <a href="shop.html">
+          <img src="images/carousel/5.jpg"
+            class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2 border-none" alt="...">
+        </a>
+      </div>
+      <!-- Item 5 -->
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+        <a href="shop.html">
+          <img src="images/carousel/1.jpg"
+            class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2 border-none" alt="...">
+        </a>
+      </div>
+    </div>
+
+    <!-- Slider indicators -->
+    <div class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+        data-carousel-slide-to="0"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+        data-carousel-slide-to="1"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+        data-carousel-slide-to="2"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
+        data-carousel-slide-to="3"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
+        data-carousel-slide-to="4"></button>
+    </div>
+    <!-- Slider controls -->
+
+    <button type="button"
+      class="flex absolute top-0 left-0 z-30 justify-center items-center px-11 h-full cursor-pointer group focus:outline-none"
+      data-carousel-prev>
+    </button>
+    <button type="button"
+      class="flex absolute top-0 right-0 z-30 justify-center items-center px-11 h-full cursor-pointer group focus:outline-none"
+      data-carousel-next>
+    </button>
+  </div>
+  <!--  -->
+
+
+  <!-- Categories -->
+  <section class="md:h-full flex items-center text-zinc-900 bg-gray-100 pt-10 dark:bg-zinc-900 dark:text-gray-100">
+    <div class="xs:px-6 px-14 md:py-28 mx-auto xs:py-16">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-6xl text-zinc-900 font-bold dark:text-gray-100">
+          C A T E G O R I E S
+        </h2>
+      </div>
+
+      <div class="flex flex-wrap -m-4">
+        <div class="p-4 sm:w-1/2 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg overflow-hidden bg-white transform transition duration-500 hover:scale-105 dark:border-none dark:bg-zinc-800">
+            <a href="shop.html">
+              <img class="lg:h-60 md:h-44 w-full object-cover object-center" src="images/ruler.jpg" alt="ruler" />
+              <h2
+                class="text-base font-semibold text-zinc-900 m-2 ml-8 bg-white dark:border-none dark:bg-zinc-800 dark:text-gray-100">
+                R U L E R
+              </h2>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg overflow-hidden bg-white transform transition duration-500 hover:scale-105 dark:border-none dark:bg-zinc-800">
+            <a href="shop.html">
+              <img class="lg:h-60 md:h-44 w-full object-cover object-center" src="images/planner.jpg" alt="planner" />
+              <h2
+                class="text-base font-semibold text-zinc-900 m-2 ml-8 bg-white dark:border-none dark:bg-zinc-800 dark:text-gray-100">
+                P L A N N E R
+              </h2>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg overflow-hidden bg-white transform transition duration-500 hover:scale-105 dark:border-none dark:bg-zinc-800">
+            <a href="shop.html">
+              <img class="lg:h-60 md:h-44 w-full object-cover object-center" src="images/notebook.jpg" alt="notebook" />
+              <h2
+                class="text-base font-semibold text-zinc-900 m-2 ml-8 bg-white dark:border-none dark:bg-zinc-800 dark:text-gray-100">
+                N O T E B O O K S
+              </h2>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg overflow-hidden bg-white transform transition duration-500 hover:scale-105 dark:border-none dark:bg-zinc-800">
+            <a href="shop.html">
+              <img class="lg:h-60 md:h-44 w-full object-cover object-center" src="images/highlighter.jpg"
+                alt="highlighter" />
+              <h2
+                class="text-base font-semibold text-zinc-900 m-2 ml-8 bg-white dark:border-none dark:bg-zinc-800 dark:text-gray-100">
+                H I G H L I G H T E R
+              </h2>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg overflow-hidden bg-white transform transition duration-500 hover:scale-105 dark:border-none dark:bg-zinc-800">
+            <a href="shop.html">
+              <img class="lg:h-60 md:h-44 w-full object-cover object-center" src="images/journal.jpg" alt="journal" />
+              <h2
+                class="text-base font-semibold text-zinc-900 m-2 ml-8 bg-white dark:border-none dark:bg-zinc-800 dark:text-gray-100">
+                J O U R N A L
+              </h2>
+            </a>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg overflow-hidden bg-white transform transition duration-500 hover:scale-105 dark:border-none dark:bg-zinc-800">
+            <a href="shop.html">
+              <img class="lg:h-60 md:h-44 w-full object-cover object-center" src="images/scissor.jpg" alt="scissor" />
+              <h2
+                class="text-base font-semibold text-zinc-900 m-2 ml-8 bg-white dark:border-none dark:bg-zinc-800 dark:text-gray-100">
+                S C I S S O R
+              </h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--  -->
+
+  <!-- Cards -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 w-full xs:p-6 md:p-14 py-16 bg-gray-100 dark:bg-zinc-900">
+    <div
+      class="relative overflow-hidden rounded-3xl shadow-xl cursor-pointer transform transition duration-500 hover:scale-105">
+      <a href="shop.html">
+        <img class="object-cover w-full h-[28rem]" src="images/pre.jpg" alt="premium_products" />
+      </a>
+      <div class="absolute bottom-10 left-5 px-6 py-4">
+        <h4
+          class="md:text-[2.5rem] mb-3 font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-pink-800">
+          P R E M I U M
+        </h4>
+        <p class="leading-normal text-zinc-900 md:text-xl font-bold drop-shadow-xl shadow-black">
+          Excellent Quality
+        </p>
+        <p class="leading-normal text-zinc-900 md:text-xl font-bold drop-shadow-xl shadow-black">
+          Thoughtful Designs
+        </p>
+      </div>
+    </div>
+    <div
+      class="relative overflow-hidden rounded-3xl shadow-xl cursor-pointer transform transition duration-500 hover:scale-105">
+      <a href="shop.html">
+        <img class="object-cover w-full h-[28rem]" src="images/pro.jpg" alt="premium_colors" />
+      </a>
+      <div class="absolute bottom-10 left-5 px-6 py-4">
+        <h4
+          class="md:text-[2.5rem] mb-3 font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-zinc-900">
+          E X C L U S I V E
+        </h4>
+        <p class="leading-normal text-zinc-900 md:text-xl font-bold drop-shadow-xl shadow-black">
+          Excellent Quality
+        </p>
+        <p class="leading-normal text-zinc-900 md:text-xl font-bold drop-shadow-xl shadow-black">
+          Thoughtful Designs
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--  -->
+
+
+  <!-- New Arrival -->
+  <section class="md:h-full flex items-center text-zinc-900 overflow-hidden bg-gray-100 dark:bg-zinc-900">
+    <div class="px-6 py-20 mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-6xl text-zinc-900 font-bold dark:text-gray-100">
+          N E W' A R R I V A L
+        </h2>
+      </div>
+
+      <div class="flex flex-wrap -m-4">
+        <div class="p-5 sm:w-1/2 lg:w-1/4 xl:w-1/5 md:w-1/3 transform transition duration-500 hover:scale-105">
+          <div class="rounded-3xl shadow-lg bg-white dark:bg-zinc-800">
+            <a href="view.html">
+              <img class="object-cover rounded-tl-3xl rounded-tr-3xl" src="images/demo.jpg" alt="demo" />
+            </a>
+
+            <div class="px-5 py-3 space-y-2">
+              <h3 class="text-lg dark:text-gray-100 font-semibold">
+                Highlighter
+              </h3>
+
+              <div class="space-x-2">
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">New</span>
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">7-Day Return</span>
+              </div>
+
+              <p class="space-x-2">
+                <span class="text-xl font-semibold dark:text-gray-100">Rs.180</span>
+                <span class="text-xs line-through text-gray-500 dark:text-gray-300">Rs.300</span>
+                <span class="text-xs text-cyan-500">30% off</span>
+              </p>
+
+              <div class="flex justify-between items-center py-2">
+                <a href="cart.html"
+                  class="px-4 py-2 bg-gradient-to-r dark:from-black dark:to-pink-700 from-zinc-800 to-pink-700 text-center text-sm text-gray-100 rounded-lg duration-300 font-bold">
+                  Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 sm:w-1/2 lg:w-1/4 xl:w-1/5 md:w-1/3 transform transition duration-500 hover:scale-105">
+          <div class="rounded-3xl shadow-lg bg-white dark:bg-zinc-800">
+            <a href="view.html">
+              <img class="object-cover rounded-tl-3xl rounded-tr-3xl" src="images/1/pexels-anni-roenkae-3109830.jpg"
+                alt="pexels" />
+            </a>
+            <div class="px-5 py-3 space-y-2">
+              <h3 class="text-lg dark:text-gray-100 font-semibold">Ruler</h3>
+              <div class="space-x-2">
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">New</span>
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">7-Day Return</span>
+              </div>
+
+              <p class="space-x-2">
+                <span class="text-xl font-semibold dark:text-gray-100">Rs.120</span>
+                <span class="text-xs line-through text-gray-500 dark:text-gray-300">Rs.200</span>
+                <span class="text-xs text-cyan-500">20% off</span>
+              </p>
+
+              <div class="flex justify-between items-center py-2">
+                <a href="cart.html"
+                  class="px-4 py-2 bg-gradient-to-r dark:from-black dark:to-pink-700 from-zinc-800 to-pink-700 text-center text-sm text-gray-100 rounded-lg duration-300 font-bold">
+                  Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 sm:w-1/2 lg:w-1/4 xl:w-1/5 md:w-1/3 transform transition duration-500 hover:scale-105">
+          <div class="rounded-3xl shadow-lg bg-white dark:bg-zinc-800">
+            <a href="view.html">
+              <img class="object-cover rounded-tl-3xl rounded-tr-3xl" src="images/1/pexels-anni-roenkae-3110502.jpg"
+                alt="pexels" />
+            </a>
+            <div class="px-5 py-3 space-y-2">
+              <h3 class="text-lg dark:text-gray-100 font-semibold">
+                Notebook
+              </h3>
+              <div class="space-x-2">
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">New</span>
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">7-Day Return</span>
+              </div>
+
+              <p class="space-x-2">
+                <span class="text-xl font-semibold dark:text-gray-100">Rs.500</span>
+                <span class="text-xs line-through text-gray-500 dark:text-gray-300">Rs.500</span>
+                <span class="text-xs text-cyan-500">50% off</span>
+              </p>
+
+              <div class="flex justify-between items-center py-2">
+                <a href="cart.html"
+                  class="px-4 py-2 bg-gradient-to-r dark:from-black dark:to-pink-700 from-zinc-800 to-pink-700 text-center text-sm text-gray-100 rounded-lg duration-300 font-bold">
+                  Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 sm:w-1/2 lg:w-1/4 xl:w-1/5 md:w-1/3 transform transition duration-500 hover:scale-105">
+          <div class="rounded-3xl shadow-lg bg-white dark:bg-zinc-800">
+            <a href="view.html">
+              <img class="object-cover rounded-tl-3xl rounded-tr-3xl" src="images/1/pexels-anni-roenkae-4175070.jpg"
+                alt="pexels" />
+            </a>
+            <div class="px-5 py-3 space-y-2">
+              <h3 class="text-lg dark:text-gray-100 font-semibold">Marker</h3>
+              <div class="space-x-2">
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">New</span>
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">7-Day Return</span>
+              </div>
+
+              <p class="space-x-2">
+                <span class="text-xl font-semibold dark:text-gray-100">Rs.150</span>
+                <span class="text-xs line-through text-gray-500 dark:text-gray-300">Rs.300</span>
+                <span class="text-xs text-cyan-500">30% off</span>
+              </p>
+
+              <div class="flex justify-between items-center py-2">
+                <a href="cart.html"
+                  class="px-4 py-2 bg-gradient-to-r dark:from-black dark:to-pink-700 from-zinc-800 to-pink-700 text-center text-sm text-gray-100 rounded-lg duration-300 font-bold">
+                  Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/5 md:w-1/3 transform transition duration-500 hover:scale-105">
+          <div class="rounded-3xl shadow-lg bg-white dark:bg-zinc-800">
+            <a href="view.html">
+              <img class="object-cover rounded-tl-3xl rounded-tr-3xl" src="images/1/pexels-dids-2911546.jpg"
+                alt="pexels" />
+            </a>
+            <div class="px-5 py-3 space-y-2">
+              <h3 class="text-lg dark:text-gray-100 font-semibold">Pen</h3>
+              <div class="space-x-2">
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">New</span>
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">7-Day Return</span>
+              </div>
+
+              <p class="space-x-2">
+                <span class="text-xl font-semibold dark:text-gray-100">Rs.100</span>
+                <span class="text-xs line-through text-gray-500 dark:text-gray-300">Rs.400</span>
+                <span class="text-xs text-cyan-500">40% off</span>
+              </p>
+
+              <div class="flex justify-between items-center py-2">
+                <a href="cart.html"
+                  class="px-4 py-2 bg-gradient-to-r dark:from-black dark:to-pink-700 from-zinc-800 to-pink-700 text-center text-sm text-gray-100 rounded-lg duration-300 font-bold">
+                  Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--  -->
+
+
+  <!-- Best Seller -->
+  <section class="md:h-full flex items-center text-zinc-900 overflow-hidden bg-gray-100 dark:bg-zinc-900">
+    <div class="px-6 py-20 mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-6xl text-zinc-900 font-bold dark:text-gray-100">
+          B E S T' S E L L E R
+        </h2>
+      </div>
+
+      <div class="flex flex-wrap -m-4">
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/5 md:w-1/3 transform transition duration-500 hover:scale-105">
+          <div class="rounded-3xl shadow-lg bg-white dark:bg-zinc-800">
+            <a href="view.html">
+              <img class="object-cover rounded-tl-3xl rounded-tr-3xl" src="images/de.jpg" alt="de" />
+            </a>
+            <div class="px-5 py-3 space-y-2">
+              <h3 class="text-lg dark:text-gray-100 font-semibold">Pen</h3>
+              <div class="space-x-2">
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">Popular</span>
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">Free Delivery</span>
+              </div>
+
+              <p class="space-x-2">
+                <span class="text-xl font-semibold dark:text-gray-100">Rs.200</span>
+                <span class="text-xs line-through text-gray-500 dark:text-gray-300">Rs.400</span>
+                <span class="text-xs text-cyan-500">40% off</span>
+              </p>
+
+              <div class="flex justify-between items-center py-2">
+                <a href="cart.html"
+                  class="px-4 py-2 bg-gradient-to-r dark:from-black dark:to-pink-700 from-zinc-800 to-pink-700 text-center text-sm text-gray-100 rounded-lg duration-300 font-bold">
+                  Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/5 md:w-1/3 transform transition duration-500 hover:scale-105">
+          <div class="rounded-3xl shadow-lg bg-white dark:bg-zinc-800">
+            <a href="view.html">
+              <img class="object-cover rounded-tl-3xl rounded-tr-3xl" src="images/1/pexels-dids-3705645.jpg"
+                alt="pexels" />
+            </a>
+            <div class="px-5 py-3 space-y-2">
+              <h3 class="text-lg dark:text-gray-100 font-semibold">Marker</h3>
+              <div class="space-x-2">
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">Popular</span>
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">Free Delivery</span>
+              </div>
+
+              <p class="space-x-2">
+                <span class="text-xl font-semibold dark:text-gray-100">Rs.300</span>
+                <span class="text-xs line-through text-gray-500 dark:text-gay-300">Rs.300</span>
+                <span class="text-xs text-cyan-500">20% off</span>
+              </p>
+
+              <div class="flex justify-between items-center py-2">
+                <a href="cart.html"
+                  class="px-4 py-2 bg-gradient-to-r dark:from-black dark:to-pink-700 from-zinc-800 to-pink-700 text-center text-sm text-gray-100 rounded-lg duration-300 font-bold">
+                  Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/5 md:w-1/3 transform transition duration-500 hover:scale-105">
+          <div class="rounded-3xl shadow-lg bg-white dark:bg-zinc-800">
+            <a href="view.html">
+              <img class="object-cover rounded-tl-3xl rounded-tr-3xl" src="images/1/pexels-dids-3045828.jpg"
+                alt="pexels" />
+            </a>
+            <div class="px-5 py-3 space-y-2">
+              <h3 class="text-lg dark:text-gray-100 font-semibold">
+                Highlighter
+              </h3>
+              <div class="space-x-2">
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">Popular</span>
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">Free Delivery</span>
+              </div>
+
+              <p class="space-x-2">
+                <span class="text-xl font-semibold dark:text-gray-100">Rs.50</span>
+                <span class="text-xs line-through text-gray-500 dark:text-gay-300">Rs.400</span>
+                <span class="text-xs text-cyan-500">70% off</span>
+              </p>
+
+              <div class="flex justify-between items-center py-2">
+                <a href="cart.html"
+                  class="px-4 py-2 bg-gradient-to-r dark:from-black dark:to-pink-700 from-zinc-800 to-pink-700 text-center text-sm text-gray-100 rounded-lg duration-300 font-bold">
+                  Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/5 md:w-1/3 transform transition duration-500 hover:scale-105">
+          <div class="rounded-3xl shadow-lg bg-white dark:bg-zinc-800">
+            <a href="view.html">
+              <img class="object-cover rounded-tl-3xl rounded-tr-3xl" src="images/1/pexels-dids-3045825.jpg"
+                alt="pexels" />
+            </a>
+            <div class="px-5 py-3 space-y-2">
+              <h3 class="text-lg dark:text-gray-100 font-semibold">
+                Notebook
+              </h3>
+              <div class="space-x-2">
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">Popular</span>
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">Free Delivery</span>
+              </div>
+
+              <p class="space-x-2">
+                <span class="text-xl font-semibold dark:text-gray-100">Rs.150</span>
+                <span class="text-xs line-through text-gray-500 dark:text-gay-300">Rs.300</span>
+                <span class="text-xs text-cyan-500">50% off</span>
+              </p>
+
+              <div class="flex justify-between items-center py-2">
+                <a href="cart.html"
+                  class="px-4 py-2 bg-gradient-to-r dark:from-black dark:to-pink-700 from-zinc-800 to-pink-700 text-center text-sm text-gray-100 rounded-lg duration-300 font-bold">
+                  Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/5 md:w-1/3 transform transition duration-500 hover:scale-105">
+          <div class="rounded-3xl shadow-lg bg-white dark:bg-zinc-800">
+            <a href="view.html">
+              <img class="object-cover rounded-tl-3xl rounded-tr-3xl" src="images/1/pexels-dids-3029479.jpg"
+                alt="pexels" />
+            </a>
+            <div class="px-5 py-3 space-y-2">
+              <h3 class="text-lg dark:text-gray-100 font-semibold">Ruler</h3>
+              <div class="space-x-2">
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">Popular</span>
+                <span class="px-3 py-0.5 border border-green-500 text-xs text-green-500">Free Delivery</span>
+              </div>
+
+              <p class="space-x-2">
+                <span class="text-xl font-semibold dark:text-gray-100">Rs.40</span>
+                <span class="text-xs line-through text-gray-500 dark:text-gay-300">Rs.100</span>
+                <span class="text-xs text-cyan-500">80% off</span>
+              </p>
+
+              <div class="flex justify-between items-center py-2">
+                <a href="cart.html"
+                  class="px-4 py-2 bg-gradient-to-r dark:from-black dark:to-pink-700 from-zinc-800 to-pink-700 text-center text-sm text-gray-100 rounded-lg duration-300 font-bold">
+                  Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--  -->
+
+  <!-- Brands -->
+  <section class="md:h-full flex items-center text-zinc-900 bg-gray-100 dark:bg-zinc-900">
+    <div class="px-6 py-20 mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-6xl text-zinc-900 font-bold dark:text-gray-100">
+          B R A N D S
+        </h2>
+      </div>
+
+      <div class="flex flex-wrap -m-4">
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/6 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg bg-white overflow-hidden transform transition duration-500 hover:scale-105 dark:bg-zinc-800 dark:border-none">
+            <a href="https://www.pilotpen.eu/" target="_blank">
+              <img class="lg:h-56 md:h-40 w-full object-contain dark:invert" src="images/brands/pilot.png"
+                alt="pexels" />
+            </a>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/6 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg bg-white overflow-hidden transform transition duration-500 hover:scale-105 dark:bg-zinc-800 dark:border-none">
+            <a href="https://www.staedtler.com/intl/en/" target="_blank">
+              <img class="lg:h-56 md:h-40 w-full object-contain dark:invert" src="images/brands/Staedtler.png"
+                alt="pexels" />
+            </a>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/6 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg bg-white overflow-hidden transform transition duration-500 hover:scale-105 dark:bg-zinc-800 dark:border-none">
+            <a href="https://www.faber-castell.in/" target="_blank">
+              <img class="lg:h-56 md:h-40 w-full object-contain dark:invert" src="images/brands/faber.png"
+                alt="pexels" />
+            </a>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/6 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg bg-white overflow-hidden transform transition duration-500 hover:scale-105 dark:bg-zinc-800 dark:border-none">
+            <a href="https://www.kokuyocamlin.com/" target="_blank">
+              <img class="lg:h-56 md:h-40 w-full object-contain dark:invert" src="images/brands/camlin.png"
+                alt="pexels" />
+            </a>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/6 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg bg-white overflow-hidden transform transition duration-500 hover:scale-105 dark:bg-zinc-800 dark:border-none">
+            <a href="https://kaco.my/" target="_blank">
+              <img class="lg:h-56 md:h-40 w-full object-contain dark:invert" src="images/brands/kaco.png"
+                alt="pexels" />
+            </a>
+          </div>
+        </div>
+
+        <div class="p-4 sm:w-1/2 lg:w-1/4 xl:w-1/6 md:w-1/3">
+          <div
+            class="h-full rounded-3xl shadow-lg bg-white overflow-hidden transform transition duration-500 hover:scale-105 dark:bg-zinc-800 dark:border-none">
+            <a href="https://www.parkerpen.com/" target="_blank">
+              <img class="lg:h-56 md:h-40 w-full object-contain dark:invert" src="images/brands/parker.png"
+                alt="pexels" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--  -->
+
+  <!-- Contact -->
+  <section id="contact" class="pt-20 pb-36 px-8 bg-gray-100 dark:bg-zinc-900">
+    <div class="max-w-6xl mx-auto ">
+      <div class="text-center">
+        <h2 class="text-3xl md:text-6xl text-zinc-900 font-bold dark:text-gray-100">
+          C O N T A C T
+        </h2>
+      </div>
+    </div>
+    <div class="mt-10 relative max-w-4xl mx-auto b">
+      <div class="relative z-20 bg-gray-200 rounded-3xl p-12 dark:bg-zinc-800">
+        <form action="">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+            <input type="text" placeholder="Name"
+              class="border-none text-lg outline-none px-4 py-2 rounded-lg dark:bg-zinc-700 dark:placeholder:text-gray-100 dark:text-gray-100" />
+
+            <input type="text" placeholder="Email"
+              class="border-none text-lg outline-none px-4 py-2 rounded-lg dark:bg-zinc-700 dark:placeholder:text-gray-100 dark:text-gray-100" />
+
+            <input type="text" placeholder="Subject"
+              class="border-none text-lg outline-none px-4 py-2 rounded-lg md:col-span-2 dark:bg-zinc-700 dark:placeholder:text-gray-100 dark:text-gray-100" />
+
+            <textarea rows="5" placeholder="Message"
+              class="border-none text-lg outline-none px-4 py-2 rounded-xl md:col-span-2 dark:bg-zinc-700 dark:placeholder:text-gray-100 dark:text-gray-100"></textarea>
+          </div>
+          <button
+            class="inline-block text-lg w-auto mt-4 px-6 py-2 bg-gradient-to-r from-zinc-800 to-purple-700 dark:from-black dark:to-purple-700 rounded-lg shadow-md font-bold text-white">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <!--  -->
+
+  <!-- Footer -->
+  <footer class="p-4 bg-zinc-900 sm:p-6 dark:bg-zinc-800">
+    <div class="md:flex md:justify-between md:items-center">
+      <div class="mb-6 md:mb-0 md:w-1/6 xs:w-full mx-auto flex justify-center">
+        <a href="https://thewizards.me/" class="flex items-center transition transform duration-500 hover:scale-110">
+          <img src="images/brands/wiz.png" class="mx-4 h-12" alt="Logo" />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-gray-100 text-gray-100">The
+            Wizards</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 md:gap-6 sm:gap-0 sm:grid-cols-3 md:w-3/5 xs:w-full">
+        <div class="xs:px-8 md:px-0">
+          <h2 class="mb-4 text-md font-semibold uppercase dark:text-gray-100 text-gray-100">
+            CATEGORIES
+          </h2>
+          <ul class="text-gray-500 dark:text-gray-400">
+            <li class="mb-1">
+              <a href="shop.html" class="hover:underline">Ruler</a>
+            </li>
+            <li class="mb-1">
+              <a href="shop.html" class="hover:underline">Highlighter</a>
+            </li>
+            <li class="mb-1">
+              <a href="shop.html" class="hover:underline">Pen</a>
+            </li>
+            <li class="mb-1">
+              <a href="shop.html" class="hover:underline">Planner & Journal</a>
+            </li>
+            <li class="mb-1">
+              <a href="shop.html" class="hover:underline">Notebook</a>
+            </li>
+            <li class="mb-1">
+              <a href="shop.html" class="hover:underline">Scissor</a>
+            </li>
+          </ul>
+        </div>
+        <div class="xs:px-8 md:px-0">
+          <h2 class="mb-4 text-md font-semibold uppercase dark:text-gray-100 text-gray-100">
+            NAVIGATE
+          </h2>
+          <ul class="text-gray-500 dark:text-gray-400">
+            <li class="mb-1">
+              <a href="index.html" class="hover:underline">Home</a>
+            </li>
+            <li class="mb-1">
+              <a href="shop.html" class="hover:underline">Shop</a>
+            </li>
+            <li class="mb-1">
+              <a href="about.html" class="hover:underline">About Us</a>
+            </li>
+            <li class="mb-1">
+              <a href="contact.html" class="hover:underline">Contact Us</a>
+            </li>
+            <li class="mb-1">
+              <a href="account.html" class="hover:underline">Account</a>
+            </li>
+            <li class="mb-1">
+              <a href="cart.html" class="hover:underline">Cart</a>
+            </li>
+          </ul>
+        </div>
+        <div class="xs:px-8 md:px-0">
+          <h2 class="mb-4 text-md font-semibold text-gray-100 uppercase dark:text-gray-100 md:mt-0 xs:mt-6">
+            LEGAL
+          </h2>
+          <ul class="text-gray-500 dark:text-gray-400">
+            <li class="mb-1">
+              <a href="index.html" class="hover:underline">Privacy Policy</a>
+            </li>
+            <li class="mb-1">
+              <a href="index.html" class="hover:underline">Terms & Conditions</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="my-6 border-zinc-700 sm:mx-auto dark:border-zinc-700 lg:my-8" />
+
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <span class="text-sm text-gray-100 sm:text-center font-semibold dark:text-gray-100 w-1/2">
+        Copyright &copy; 2022 - Client Name. All Rights Reserved.
+      </span>
+
+      <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0 w-1/2">
+        <a href="https://www.facebook.com/"
+          class="text-gray-100 dark:text-gray-100 hover:text-gray-100 dark:hover:text-gray-400 transition transform duration-500 hover:scale-110"
+          target="_blank">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd"
+              d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+
+        <a href="https://www.instagram.com/?hl=en"
+          class="text-gray-100 dark:text-gray-100 hover:text-gray-100 dark:hover:text-gray-400 transition transform duration-500 hover:scale-110"
+          target="_blank">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd"
+              d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+
+        <a href="https://twitter.com/"
+          class="text-gray-100 dark:text-gray-100 hover:text-gray-100 dark:hover:text-gray-400 transition transform duration-500 hover:scale-110"
+          target="_blank">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+            </path>
+          </svg>
+        </a>
+
+        <a href="https://github.com/"
+          class="text-gray-100 dark:text-gray-100 hover:text-gray-100 dark:hover:text-gray-400 transition transform duration-500 hover:scale-110"
+          target="_blank">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+  <!--  -->
+
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+</body>
+
+</html>
